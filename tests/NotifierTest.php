@@ -182,6 +182,8 @@ class NotifierTest extends PHPUnit_Framework_TestCase
             'projectKey' => 'api_key',
             'keysBlacklist' => ['/key1/'],
         ]);
+        $deprecationNotice = '/Notice: keysBlacklist is a deprecated option\. Use keysBlocklist instead\./';
+        $this->expectOutputRegex($deprecationNotice);
         $notice = $notifier->buildNotice(Troublemaker::newException());
         $notice['params'] = [
             'key1' => 'value1',

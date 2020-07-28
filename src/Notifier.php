@@ -72,7 +72,10 @@ class Notifier
         }
 
         if (isset($opt['keysBlacklist'])) {
-          $opt['keysBlocklist'] = $opt['keysBlacklist'];
+            trigger_error(
+                'keysBlacklist is a deprecated option. Use keysBlocklist instead.'
+            );
+            $opt['keysBlocklist'] = $opt['keysBlacklist'];
         }
 
         $this->opt = array_merge([
