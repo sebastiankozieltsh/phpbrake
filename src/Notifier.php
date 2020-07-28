@@ -71,13 +71,13 @@ class Notifier
             throw new Exception('phpbrake: Notifier requires projectId and projectKey');
         }
 
-        $blacklistKeys = isset($opt['keysBlacklist']) ? $opt['keysBlacklist'] : null;
-        $blocklistKeys = isset($opt['keysBlocklist']) ? $opt['keysBlocklist'] : null;
-        $blocklistKeys = $blacklistKeys ?: $blocklistKeys;
+        if (isset($opt['keysBlacklist'])) {
+          $opt['keysBlocklist'] = $opt['keysBlacklist'];
+        }
 
         $this->opt = array_merge([
           'host' => 'api.airbrake.io',
-          'keysBlocklist' => $blocklistKeys ?? ['/password/i', '/secret/i'],
+          'keysBlocklist' => ['/password/i', '/secret/i'],
         ], $opt);
 
         $this->httpClient = $this->newHTTPClient();
