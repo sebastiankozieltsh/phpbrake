@@ -72,9 +72,8 @@ class Notifier
         }
 
         if (isset($opt['keysBlacklist'])) {
-            trigger_error(
-                'keysBlacklist is a deprecated option. Use keysBlocklist instead.',
-                E_USER_NOTICE
+            error_log(
+                'keysBlacklist is a deprecated option. Use keysBlocklist instead.'
             );
             $opt['keysBlocklist'] = $opt['keysBlacklist'];
         }
